@@ -3,18 +3,18 @@ import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 
 export default class Choices extends Component {
   render () {
-    const { handleEndRound } = this.props
+    const { endRound } = this.props
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => handleEndRound('rock')}>
+        <TouchableOpacity onPress={() => endRound('rock')}>
           <Image source={require('../assets/img/rock.png')} style={styles.button} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleEndRound('paper')}>
+        <TouchableOpacity onPress={() => endRound('paper')}>
           <Image source={require('../assets/img/paper.png')} style={styles.button} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleEndRound('scissors')}>
+        <TouchableOpacity onPress={() => endRound('scissors')}>
           <Image source={require('../assets/img/scissors.png')} style={styles.button} />
         </TouchableOpacity>
       </View>
@@ -24,13 +24,17 @@ export default class Choices extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: '#e0e287',
+    flex: 0,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    paddingBottom: 20,
+    paddingTop: 20
   },
   button: {
+    borderColor: '#dcf6ff',
     borderRadius: 40,
-    borderWidth: 1,
+    borderWidth: 2,
     height: 80,
     width: 80
   }

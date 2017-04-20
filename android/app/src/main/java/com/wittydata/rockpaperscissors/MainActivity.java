@@ -1,4 +1,4 @@
-package com.rockpaperscissors;
+package com.wittydata.rockpaperscissors;
 
 import com.facebook.react.ReactActivity;
 

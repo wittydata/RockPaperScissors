@@ -6,9 +6,9 @@ import { createStore } from 'redux'
 import Home from './containers/Home'
 import Game from './containers/Game'
 import reducer from './reducers'
-import { initState } from './core'
+import { initialState } from './core'
 
-const store = createStore(reducer, initState())
+const store = createStore(reducer, initialState())
 
 export default class RockPaperScissors extends Component {
   render () {

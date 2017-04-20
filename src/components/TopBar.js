@@ -3,20 +3,15 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 
 export default class TopBar extends Component {
   render () {
-    const { handleNewRound, handleNewStats, navigator } = this.props
+    const { reset, navigator } = this.props
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => navigator.pop()}>
-          <Text>Back</Text>
+          <Text style={styles.button}>Back</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => {
-            handleNewRound()
-            handleNewStats()
-          }}
-        >
-          <Text>Reset</Text>
+        <TouchableOpacity onPress={() => reset()}>
+          <Text style={styles.button}>Reset</Text>
         </TouchableOpacity>
       </View>
     )
@@ -28,13 +23,15 @@ const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 4,
-    marginTop: 4
+    margin: 6
   },
   button: {
-    borderRadius: 40,
+    borderColor: '#585c84',
+    borderRadius: 6,
     borderWidth: 1,
-    height: 80,
-    width: 80
+    color: '#585c84',
+    fontSize: 21,
+    textAlign: 'center',
+    width: 75
   }
 })

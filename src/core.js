@@ -1,36 +1,49 @@
 const choices = ['paper', 'rock', 'scissors']
 const results = ['draw', 'lose', 'win']
 
-export function Round () {
-  return { count: 0, computer: '', player: '', result: '' }
+export function endRound (state, player) {
+  const computer = getRandomChoice()
+  const result = compareChoices(computer, player)
+  let { count, draw, lose, win } = state
+  count += 1
+
+  if (result === results[0]) {
+    draw += 1
+  } else if (result === results[1]) {
+    lose += 1
+  } else if (result === results[2]) {
+    win += 1
+  }
+
+  return { ...state, count, computer, player, result, draw, lose, win }
 }
 
-export function Stats () {
-  return { draw: 0, lose: 0, win: 0 }
+export function initialState () {
+  return { count: 0, computer: '', player: '', result: '', draw: 0, lose: 0, win: 0 }
 }
 
-export function compareChoices (computer, player) {
-  if (computer === 'paper') {
-    if (player === 'rock') {
+function compareChoices (computer, player) {
+  if (computer === choices[0]) {
+    if (player === choices[1]) {
       // Player loses
       return results[1]
-    } else if (player === 'scissors') {
+    } else if (player === choices[2]) {
       // Player wins
       return results[2]
     }
-  } else if (computer === 'rock') {
-    if (player === 'paper') {
+  } else if (computer === choices[1]) {
+    if (player === choices[0]) {
       // Player wins
       return results[2]
-    } else if (player === 'scissors') {
+    } else if (player === choices[2]) {
       // Player loses
       return results[1]
     }
   } else {
-    if (player === 'paper') {
+    if (player === choices[0]) {
       // Player loses
       return results[1]
-    } else if (player === 'rock') {
+    } else if (player === choices[1]) {
       // Player wins
       return results[2]
     }
@@ -39,33 +52,8 @@ export function compareChoices (computer, player) {
   return results[0]
 }
 
-export function getRandomChoice () {
+function getRandomChoice () {
   return choices[getRandomIntInclusive(0, 2)]
-}
-
-export function initState () {
-  return { round: Round(), stats: Stats() }
-}
-
-export function updateRound (round, stats, player) {
-  const computer = getRandomChoice()
-  const result = compareChoices(computer, player)
-  const newRound = { count: round.count += 1, computer, player, result }
-  const newStats = updateStats(result, stats)
-
-  return { round: newRound, stats: newStats }
-}
-
-export function updateStats (result, stats) {
-  if (result === 'draw') {
-    stats.draw += 1
-  } else if (result === 'lose') {
-    stats.lose += 1
-  } else if (result === 'win') {
-    stats.win += 1
-  }
-
-  return { ...stats }
 }
 
 function getRandomIntInclusive (min, max) {

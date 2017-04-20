@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { endRound, newRound, newStats } from '../actions'
+import { endRound, reset } from '../actions'
 import BottomBar from '../components/BottomBar'
 import Display from '../components/Display'
 import Stats from '../components/Stats'
@@ -26,10 +26,8 @@ class Game extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    margin: 6,
-    marginBottom: 0,
-    marginTop: 16
+    backgroundColor: '#ffd9ab',
+    flex: 1
   }
 })
 
@@ -38,9 +36,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  handleEndRound: endRound,
-  handleNewRound: newRound,
-  handleNewStats: newStats
+  endRound,
+  reset
 }
 
 export default connect(

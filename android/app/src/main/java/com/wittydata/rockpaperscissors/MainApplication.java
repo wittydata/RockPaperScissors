@@ -1,4 +1,4 @@
-package com.rockpaperscissors;
+package com.wittydata.rockpaperscissors;
 
 import android.app.Application;
 

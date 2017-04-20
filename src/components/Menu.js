@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   menuText: {
+    borderColor: '#585c48',
     borderRadius: 6,
     borderWidth: 1,
-    height: 24,
-    paddingTop: 3,
+    color: '#585c48',
+    fontSize: 21,
+    paddingTop: 2,
     textAlign: 'center',
     width: 120
   }

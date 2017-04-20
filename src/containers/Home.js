@@ -7,7 +7,7 @@ import Menu from '../components/Menu'
 class Home extends Component {
   render () {
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={styles.container}>
         <Text style={styles.title}>Rock-paper-scissors</Text>
 
         <Menu {...this.props} />
@@ -28,8 +28,15 @@ export default connect(
 )(Home)
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#ffd9ab',
+    flex: 1,
+    justifyContent: 'center'
+  },
   title: {
-    fontSize: 28,
+    color: '#f8feff',
+    fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 50
   }

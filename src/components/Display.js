@@ -3,8 +3,8 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 
 export default class Display extends Component {
   render () {
-    const { round: { count, computer, player, result } } = this.props
-    const resultStyle = [styles.bigText, styles.boldText]
+    const { count, computer, player, result } = this.props
+    const resultStyle = [styles.result]
 
     if (result === 'draw') {
       resultStyle.push(styles.yellow)
@@ -16,29 +16,27 @@ export default class Display extends Component {
 
     return (
       <View style={styles.container}>
-        {count > 0 ? <Text style={[styles.bigText, styles.boldText]}>Round {count}</Text> : null }
+        <Text style={styles.title}>{count > 0 ? `Round ${count}` : ''}</Text>
 
-        <View style={styles.choices}>
-          {(result && result !== '') ? (
-            <View>
-              <Text style={styles.boldText}>AI</Text>
-              <Image source={getImage(computer)} style={styles.button} />
-            </View>
-          ) : (
-            null
-          )}
-
-          {(result && result !== '') ? (
-            <View>
-              <Text style={styles.boldText}>You</Text>
-              <Image source={getImage(player)} style={styles.button} />
-            </View>
-          ) : (
-            null
-          )}
-        </View>
+        {(result && result !== '') ? (
+          <View style={styles.choices}>
+            <Image source={getImage(computer)} style={styles.button} />
+            <Text style={styles.player}>AI</Text>
+          </View>
+        ) : (
+          null
+        )}
 
         <Text style={resultStyle}>{result ? `You ${result}!` : ''}</Text>
+
+        {(result && result !== '') ? (
+          <View style={styles.choices}>
+            <Image source={getImage(player)} style={styles.button} />
+            <Text style={styles.player}>You</Text>
+          </View>
+        ) : (
+          null
+        )}
       </View>
     )
   }
@@ -46,28 +44,34 @@ export default class Display extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 4,
+    alignItems: 'center',
+    flex: 1,
     justifyContent: 'space-around',
-    marginBottom: 80,
-    marginTop: 80
-  },
-  bigText: {
-    fontSize: 21
-  },
-  boldText: {
-    fontWeight: 'bold',
-    textAlign: 'center'
+    margin: 6
   },
   button: {
-    borderRadius: 40,
-    borderWidth: 1,
-    height: 80,
-    width: 80
+    borderColor: '#dcf6ff',
+    borderRadius: 60,
+    borderWidth: 2,
+    height: 120,
+    width: 120
   },
   choices: {
-    flex: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    alignItems: 'center'
+  },
+  player: {
+    color: '#585c84',
+    fontSize: 21,
+    fontWeight: 'bold'
+  },
+  result: {
+    fontSize: 28,
+    fontWeight: 'bold'
+  },
+  title: {
+    color: '#585c84',
+    fontSize: 28,
+    fontWeight: 'bold'
   },
   red: {
     color: 'crimson'
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
     color: 'seagreen'
   },
   yellow: {
-    color: 'gold'
+    color: '#80869b'
   }
 })
 
